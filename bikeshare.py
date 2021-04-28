@@ -107,26 +107,26 @@ def raw_data(df):
     prints the raw dataframe
     """
 
-    while True:
+while True:
         user_input = input("Would you like to view raw data ? type 'yes' or 'no' ").lower()
-
         if user_input == 'yes':
-            while True:
-                try:
-                    num_rows = int(input("How many rows of data would you like to see?"))
-                except ValueError:
-                    print("That is not an int!")
-                else:
-                    break
-            count = 0
-            while count < num_rows:
-                df1 = df.iloc[count]
-                count += 1
-                print(df1)
-
-            break
-        if user_input == 'no':
+            i = 5
+            df1 = df.head(i)
+            print(df1)
+        else:
+           return
+        break
+    while True:
+        more_rows = input("Will you like to see more rows of data? 'yes' or 'no' ").lower()
+        if more_rows == 'yes':
+            i += 5
+            df2 = df.head(i)
+            print(df2)
+        else:
             return
+
+    if user_input == 'no':
+        return
 
 
 def time_stats(df):
