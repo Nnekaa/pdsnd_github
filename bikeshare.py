@@ -107,26 +107,26 @@ def raw_data(df):
     prints the raw dataframe
     """
 
-    while True:
+while True:
         user_input = input("Would you like to view raw data ? type 'yes' or 'no' ").lower()
-
         if user_input == 'yes':
-            while True:
-                try:
-                    num_rows = int(input("How many rows of data would you like to see?"))
-                except ValueError:
-                    print("That is not an int!")
-                else:
-                    break
-            count = 0
-            while count < num_rows:
-                df1 = df.iloc[count]
-                count += 1
-                print(df1)
-
-            break
-        if user_input == 'no':
+            i = 5
+            df1 = df.head(i)
+            print(df1)
+        else:
+           return
+        break
+    while True:
+        more_rows = input("Will you like to see more rows of data? 'yes' or 'no' ").lower()
+        if more_rows == 'yes':
+            i += 5
+            df2 = df.head(i)
+            print(df2)
+        else:
             return
+
+    if user_input == 'no':
+        return
 
 
 def time_stats(df):
@@ -136,12 +136,11 @@ def time_stats(df):
     start_time = time.time()
 
     # display the most common month
-    common_month = df['month'].value_counts().head(1).index
+    month_index = df['month'].value_counts().head(1).index[0]
     common_month_count = df['month'].value_counts().max()
     months = ['january', 'february', 'march', 'april', 'may','june']
-    for month in months:
-        if months.index(month) + 1 == common_month:
-            print("The most common month is: {} with count {}".format(month, common_month_count))
+    common_month = months[month_index - 1]
+    print("The most common month is: {} with count {}".format(common_month, common_month_count))
 
 
 
