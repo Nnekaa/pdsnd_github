@@ -136,12 +136,11 @@ def time_stats(df):
     start_time = time.time()
 
     # display the most common month
-    common_month = df['month'].value_counts().head(1).index
+    month_index = df['month'].value_counts().head(1).index[0]
     common_month_count = df['month'].value_counts().max()
     months = ['january', 'february', 'march', 'april', 'may','june']
-    for month in months:
-        if months.index(month) + 1 == common_month:
-            print("The most common month is: {} with count {}".format(month, common_month_count))
+    common_month = months[month_index - 1]
+    print("The most common month is: {} with count {}".format(common_month, common_month_count))
 
 
 
